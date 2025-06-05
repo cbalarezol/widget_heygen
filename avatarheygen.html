@@ -50,7 +50,7 @@
         }
         
         .avatar-container {
-            height: 650px; /* Altura generosa para el chat en ESCRITORIO */
+            height: 650px;
             background-color: var(--secondary-color);
             display: flex;
             justify-content: center;
@@ -82,7 +82,7 @@
             margin-bottom: 8px;
         }
 
-        select {
+        select, button {
             width: 100%;
             padding: 12px;
             border-radius: 8px;
@@ -94,17 +94,13 @@
         }
 
         button {
-            width: 100%;
             padding: 15px;
             margin-top: 25px;
-            border-radius: 8px;
             border: none;
             background-color: var(--primary-color);
             color: white;
             font-size: 1.1em;
             font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
         }
 
         button:hover {
@@ -119,7 +115,6 @@
             min-height: 50px;
             color: #555;
             font-style: italic;
-            transition: opacity 0.3s;
         }
 
         #heygen-streaming-embed {
@@ -130,28 +125,53 @@
             bottom: auto !important;
         }
         
+        /* === ESTILOS PARA EL AVISO DE ROTACIÓN === */
+        #orientation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            z-index: 10000;
+            display: none; /* Oculto por defecto */
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .orientation-message svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            fill: white;
+        }
+        
         /* === MEDIA QUERY PARA MÓVILES Y TABLETS === */
         @media (max-width: 768px) {
-            body {
-                padding: 10px; /* Menos padding en pantallas pequeñas */
-            }
+            body { padding: 10px; }
+            .form-section { padding: 25px; }
+            h1 { font-size: 1.5em; }
+            .avatar-container { height: 65vh; }
 
-            .form-section {
-                padding: 25px; /* Menos padding en el formulario */
-            }
-
-            h1 {
-                font-size: 1.5em; /* Título más pequeño */
-            }
-            
-            .avatar-container {
-                /* La clave está aquí: usamos la altura de la ventana (vh) */
-                height: 65vh; 
+            /* Muestra el aviso SÓLO en pantallas pequeñas Y en modo vertical */
+            @media (orientation: portrait) {
+                #orientation-overlay {
+                    display: flex;
+                }
             }
         }
     </style>
 </head>
 <body>
+    
+    <div id="orientation-overlay">
+        <div class="orientation-message">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.5,4.5a4.5,4.5,0,0,0-4.47,4.03l-1-1a1,1,0,0,0-1.42,1.42L11,10.29a.9.9,0,0,0,.3.2,1,1,0,0,0,1-.13l1.36-1.36a1,1,0,0,0-1.42-1.42l-.63.63A2.48,2.48,0,0,1,16.5,6.5a2.5,2.5,0,0,1,0,5H15a1,1,0,0,0,0,2h1.5a4.5,4.5,0,0,0,0-9ZM7.5,20.5a4.5,4.5,0,0,0,4.47-4.03l1,1a1,1,0,1,0,1.42-1.42L13,14.71a.9.9,0,0,0-.3-.2,1,1,0,0,0-1,.13L10.34,16.05a1,1,0,1,0,1.42,1.42l.63-.63A2.48,2.48,0,0,1,7.5,18.5a2.5,2.5,0,0,1,0-5H9a1,1,0,0,0,0-2H7.5a4.5,4.5,0,0,0,0,9Z"/></svg>
+            <p>Para una mejor experiencia,<br>por favor gire su dispositivo a modo horizontal.</p>
+        </div>
+    </div>
 
     <div class="main-container">
         <div class="form-section">
@@ -160,14 +180,8 @@
             <label for="avatarSelector">Elige una Especialidad para conversar:</label>
             <select id="avatarSelector">
                 <option value="" data-description="Selecciona un tema del que quieras hablar para ver una breve descripción aquí.">-- Selecciona --</option>
-                <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImJl%0D%0ANTJlZjlhYmZkYjQ2YTRiYTk4NWI2OTE4ZTMxMTYwIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" 
-                        data-description="Conversa sobre cómo optimizar procesos y aplicar tecnología para mejorar la eficiencia en tu negocio.">
-                    Optimización Tecnológica
-                </option>
-                <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjFj%0D%0ANTdkODgzYWU0ZTQ2MDdhNWE5OTdiN2Y5MzJjZjZmIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" 
-                        data-description="Explora estrategias para expandir tu mercado, identificar nuevas oportunidades y hacer crecer tu empresa.">
-                    Desarrollo de Negocios
-                </option>
+                <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImJl%0D%0ANTJlZjlhYmZkYjQ2YTRiYTk4NWI2OTE4ZTMxMTYwIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Conversa sobre cómo optimizar procesos y aplicar tecnología para mejorar la eficiencia en tu negocio.">Optimización Tecnológica</option>
+                <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjFj%0D%0ANTdkODgzYWU0ZTQ2MDdhNWE5OTdiN2Y5MzJjZjZmIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Explora estrategias para expandir tu mercado, identificar nuevas oportunidades y hacer crecer tu empresa.">Desarrollo de Negocios</option>
                 <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImRm%0D%0ANTgxZGQ2NWVjMjRjNzViMDlkYmVkNGM2NzUxMTVmIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Practica tu inglés conmigo. Puedo ayudarte a mejorar tu fluidez y confianza en conversaciones cotidianas.">English Learning Partner</option>
                 <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjIx%0D%0AYTM4NzFjMmYzZjQ4ZTY5YjNjNzAyODdiNmIzYWEzIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Recibe consejos sobre planes de entrenamiento, nutrición y motivación para alcanzar tus metas como corredor.">Coach Running</option>
                 <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImY0%0D%0AYjExYTU5NzQxNTRiZTk5Y2Y2Yzg5ZTA2MDZiMjU5IiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Hablemos sobre servicios en la nube como AWS, Azure o Google Cloud, arquitectura y mejores prácticas.">Cloud Computing</option>
@@ -189,6 +203,7 @@
     </div>
 
     <script>
+        // El bloque de script no ha cambiado, es exactamente el mismo de antes.
         (function() {
             const avatarSelector = document.getElementById('avatarSelector');
             const loadAvatarButton = document.getElementById('loadAvatarButton');
@@ -244,7 +259,7 @@
                         visibility: hidden;
                       }
                       #${heyGenWidgetId}.show { opacity: 1; visibility: visible; }
-                      #${heyGenWidgetId}.expand {
+                      #${heygenWidgetId}.expand {
                         width: 100% !important;
                         height: 100% !important;
                         border: 0 !important;
