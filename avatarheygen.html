@@ -1,9 +1,169 @@
+<script>!function(window){const host="https://labs.heygen.com",url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjU0%0D%0AODljOTUyNDUyMTRiNjk5NTA1ZTg4ZjkzMjZmYTg5IiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9&inIFrame=1",clientWidth=document.body.clientWidth,wrapDiv=document.createElement("div");wrapDiv.id="heygen-streaming-embed";const container=document.createElement("div");container.id="heygen-streaming-container";const stylesheet=document.createElement("style");stylesheet.innerHTML=`\n  #heygen-streaming-embed {\n    z-index: 9999;\n    position: fixed;\n    left: 40px;\n    bottom: 40px;\n    width: 200px;\n    height: 200px;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);\n    transition: all linear 0.1s;\n    overflow: hidden;\n\n    opacity: 0;\n    visibility: hidden;\n  }\n  #heygen-streaming-embed.show {\n    opacity: 1;\n    visibility: visible;\n  }\n  #heygen-streaming-embed.expand {\n    ${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}\n    border: 0;\n    border-radius: 8px;\n  }\n  #heygen-streaming-container {\n    width: 100%;\n    height: 100%;\n  }\n  #heygen-streaming-container iframe {\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  `;const iframe=document.createElement("iframe");iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;let visible=!1,initial=!1;window.addEventListener("message",(e=>{e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial)):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible)):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible)))})),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.body.appendChild(wrapDiv)}(globalThis);</script>
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset = 'utf-8'>
-<title> HeyGen Streaming Avatar</title>
+    <meta charset="utf-8">
+    <title>HeyGen Avatar Dinámico</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        label { display: block; margin-top: 10px; }
+        select, button { padding: 8px; margin-top: 5px; }
+    </style>
 </head>
 <body>
-<script>!function(window){const host="https://labs.heygen.com",url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImJl%0D%0ANTJlZjlhYmZkYjQ2YTRiYTk4NWI2OTE4ZTMxMTYwIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9&inIFrame=1",clientWidth=document.body.clientWidth,wrapDiv=document.createElement("div");wrapDiv.id="heygen-streaming-embed";const container=document.createElement("div");container.id="heygen-streaming-container";const stylesheet=document.createElement("style");stylesheet.innerHTML=`\n  #heygen-streaming-embed {\n    z-index: 9999;\n    position: fixed;\n    left: 40px;\n    bottom: 40px;\n    width: 200px;\n    height: 200px;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);\n    transition: all linear 0.1s;\n    overflow: hidden;\n\n    opacity: 0;\n    visibility: hidden;\n  }\n  #heygen-streaming-embed.show {\n    opacity: 1;\n    visibility: visible;\n  }\n  #heygen-streaming-embed.expand {\n    ${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}\n    border: 0;\n    border-radius: 8px;\n  }\n  #heygen-streaming-container {\n    width: 100%;\n    height: 100%;\n  }\n  #heygen-streaming-container iframe {\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  `;const iframe=document.createElement("iframe");iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;let visible=!1,initial=!1;window.addEventListener("message",(e=>{e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial)):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible)):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible)))})),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.body.appendChild(wrapDiv)}(globalThis);</script>
+
+    <h1>Selecciona un Avatar</h1>
+
+    <label for="avatarSelector">Elige una opción:</label>
+    <select id="avatarSelector">
+        <option value="">-- Selecciona --</option>
+        <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImJl%0D%0ANTJlZjlhYmZkYjQ2YTRiYTk4NWI2OTE4ZTMxMTYwIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Optimizacion Tecnologica</option>
+        <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjFj%0D%0ANTdkODgzYWU0ZTQ2MDdhNWE5OTdiN2Y5MzJjZjZmIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Desarrollo de Negocios</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImRm%0D%0ANTgxZGQ2NWVjMjRjNzViMDlkYmVkNGM2NzUxMTVmIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">English Learning Partner</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjIx%0D%0AYTM4NzFjMmYzZjQ4ZTY5YjNjNzAyODdiNmIzYWEzIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Coach Running</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6ImY0%0D%0AYjExYTU5NzQxNTRiZTk5Y2Y2Yzg5ZTA2MDZiMjU5IiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Cloud Computing</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjM5%0D%0AYjkyZjhhZDIwNDQ4YzliZGViYWRmNjhmODFhNjZhIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Ciberseguridad</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjIx%0D%0AYzBhZDQwYzYzYzQ3Y2ZiMGEyZWE4NjRhYTUyYzJhIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Legal Telecomunicaciones</option>
+		<option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjU0%0D%0AODljOTUyNDUyMTRiNjk5NTA1ZTg4ZjkzMjZmYTg5IiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9">Redes RAN 4G y 5G</option>
+        </select>
+
+    <button id="loadAvatarButton">Cargar Avatar</button>
+
+    <script>
+        // El JavaScript irá aquí (ver Paso 2)
+		(function() {
+    const avatarSelector = document.getElementById('avatarSelector');
+    const loadAvatarButton = document.getElementById('loadAvatarButton');
+    const heyGenWidgetId = 'heygen-streaming-embed'; // ID del div principal que crea el script de HeyGen
+
+    // Función para limpiar cualquier instancia previa del widget de HeyGen
+    function cleanupHeyGenWidget() {
+        const existingWidget = document.getElementById(heyGenWidgetId);
+        if (existingWidget) {
+            existingWidget.remove();
+        }
+        // Podrías necesitar limpiar también el event listener de 'message' si se acumulan,
+        // pero para este script podría no ser estrictamente necesario si el nuevo iframe es el único que postea.
+    }
+
+    // Función para cargar el script de HeyGen con el token 'share' seleccionado
+    function loadHeyGenWidget(shareToken) {
+        if (!shareToken) {
+            alert('Por favor, selecciona una opción de avatar.');
+            return;
+        }
+
+        cleanupHeyGenWidget(); // Limpia antes de cargar uno nuevo
+
+        // El script original de HeyGen, modificado para ser una función
+        // y para usar el shareToken que le pasamos.
+        // NOTA: Debes tomar TU script de HeyGen y adaptarlo aquí.
+        // La parte principal que cambia es la variable 'url'.
+        (function(window, currentShareToken) {
+            const host = "https://labs.heygen.com"; // O el host que te dé HeyGen
+            
+            // Construimos la URL dinámicamente con el currentShareToken
+            const url = host + "/guest/streaming-embed?share=" + currentShareToken + "&inIFrame=1";
+
+            const clientWidth = document.body.clientWidth; // Esto podría necesitar ajustes si el body no tiene el ancho completo al inicio.
+            const wrapDiv = document.createElement("div");
+            wrapDiv.id = heyGenWidgetId; // Usamos el ID constante
+            const container = document.createElement("div");
+            container.id = "heygen-streaming-container"; // ID del script original
+            const stylesheet = document.createElement("style");
+            
+            // Los estilos del script original de HeyGen
+            stylesheet.innerHTML = `
+              #${heyGenWidgetId} {
+                z-index: 9999;
+                position: fixed;
+                left: 40px;
+                bottom: 40px;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
+                transition: all linear 0.1s;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+              }
+              #${heyGenWidgetId}.show {
+                opacity: 1;
+                visibility: visible;
+              }
+              #${heyGenWidgetId}.expand {
+                ${clientWidth < 540 ? "height: 266px; width: 96%; left: 50%; transform: translateX(-50%);" : "height: 366px; width: calc(366px * 16 / 9);"}
+                border: 0;
+                border-radius: 8px;
+              }
+              #heygen-streaming-container {
+                width: 100%;
+                height: 100%;
+              }
+              #heygen-streaming-container iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+              }
+            `;
+            
+            const iframe = document.createElement("iframe");
+            iframe.allowFullscreen = false; // Script original dice !1
+            iframe.title = "Streaming Embed";
+            iframe.role = "dialog";
+            iframe.allow = "microphone";
+            iframe.src = url;
+
+            let visible = false;
+            let initial = false;
+
+            // El event listener del script original de HeyGen
+            // Considera nombrarlo para poder removerlo si es necesario, aunque para este caso
+            // el listener está en 'window' y filtra por 'e.origin', así que podría estar bien.
+            window.addEventListener("message", (e => {
+                if (e.origin === host && e.data && e.data.type && "streaming-embed" === e.data.type) {
+                    if ("init" === e.data.action) {
+                        initial = true;
+                        wrapDiv.classList.toggle("show", initial);
+                    } else if ("show" === e.data.action) {
+                        visible = true;
+                        wrapDiv.classList.toggle("expand", visible);
+                    } else if ("hide" === e.data.action) {
+                        visible = false;
+                        wrapDiv.classList.toggle("expand", visible);
+                    }
+                }
+            }));
+
+            container.appendChild(iframe);
+            wrapDiv.appendChild(stylesheet);
+            wrapDiv.appendChild(container);
+            document.body.appendChild(wrapDiv);
+
+        })(globalThis, shareToken); // Pasamos globalThis (como el script original) y el shareToken
+    }
+
+    // Event listener para el botón
+    loadAvatarButton.addEventListener('click', function() {
+        const selectedShareToken = avatarSelector.value;
+        loadHeyGenWidget(selectedShareToken);
+    });
+
+    // Opcional: Cargar un avatar por defecto al inicio si lo deseas
+    // const defaultShareToken = "SHARE_TOKEN_AVATAR_POR_DEFECTO"; // Elige uno
+    // if (defaultShareToken) {
+    //     loadHeyGenWidget(defaultShareToken);
+    // }
+
+})();
+    </script>
+
+</body>
 </html>
