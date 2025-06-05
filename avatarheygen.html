@@ -33,31 +33,31 @@
             box-sizing: border-box;
         }
 
-        /* --- Contenedor Principal: SIEMPRE en columna --- */
         .main-container {
             display: flex;
-            flex-direction: column; /* Hacemos que la dirección sea siempre vertical */
+            flex-direction: column;
             background-color: var(--card-bg-color);
             border-radius: 20px;
             box-shadow: 0 10px 30px var(--shadow-color);
             overflow: hidden;
             width: 100%;
-            max-width: 750px; /* Un ancho máximo ideal para una columna */
+            max-width: 750px;
         }
 
         .form-section {
             padding: 40px;
+            transition: padding 0.3s ease;
         }
         
-        /* --- Contenedor del Avatar: Debajo del formulario --- */
         .avatar-container {
-            height: 600px; /* Altura generosa para el chat */
+            height: 650px; /* Altura generosa para el chat en ESCRITORIO */
             background-color: var(--secondary-color);
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            border-top: 1px solid #e0e0e0; /* Borde para separar del formulario */
+            border-top: 1px solid #e0e0e0;
+            transition: height 0.3s ease;
         }
 
         .avatar-placeholder-text {
@@ -66,13 +66,13 @@
             padding: 20px;
         }
 
-        /* --- Estilos del Formulario --- */
         h1 {
             font-size: 1.8em;
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 10px;
             text-align: center;
+            transition: font-size 0.3s ease;
         }
 
         label {
@@ -122,7 +122,6 @@
             transition: opacity 0.3s;
         }
 
-        /* --- Estilos del Widget de HeyGen --- */
         #heygen-streaming-embed {
             position: absolute !important;
             top: 50% !important;
@@ -131,8 +130,25 @@
             bottom: auto !important;
         }
         
-        /* Ya no necesitamos la sección @media, el diseño es universal */
+        /* === MEDIA QUERY PARA MÓVILES Y TABLETS === */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Menos padding en pantallas pequeñas */
+            }
 
+            .form-section {
+                padding: 25px; /* Menos padding en el formulario */
+            }
+
+            h1 {
+                font-size: 1.5em; /* Título más pequeño */
+            }
+            
+            .avatar-container {
+                /* La clave está aquí: usamos la altura de la ventana (vh) */
+                height: 65vh; 
+            }
+        }
     </style>
 </head>
 <body>
