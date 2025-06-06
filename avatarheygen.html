@@ -28,7 +28,9 @@
             color: var(--text-color);
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* === CAMBIO REALIZADO AQUÍ === */
+            align-items: flex-start; /* Cambiamos 'center' por 'flex-start' para alinear arriba */
+            /* =============================== */
             min-height: 100vh;
             box-sizing: border-box;
         }
@@ -42,6 +44,8 @@
             overflow: hidden;
             width: 100%;
             max-width: 750px;
+            margin-top: 2vh; /* Un pequeño margen superior */
+            margin-bottom: 2vh;
         }
 
         .form-section {
@@ -125,7 +129,6 @@
             bottom: auto !important;
         }
         
-        /* === ESTILOS PARA EL AVISO DE ROTACIÓN === */
         #orientation-overlay {
             position: fixed;
             top: 0;
@@ -135,7 +138,7 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
             z-index: 10000;
-            display: none; /* Oculto por defecto */
+            display: none;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -148,14 +151,13 @@
             fill: white;
         }
         
-        /* === MEDIA QUERY PARA MÓVILES Y TABLETS === */
         @media (max-width: 768px) {
             body { padding: 10px; }
+            .main-container { margin-top: 1vh; margin-bottom: 1vh; }
             .form-section { padding: 25px; }
             h1 { font-size: 1.5em; }
             .avatar-container { height: 65vh; }
 
-            /* Muestra el aviso SÓLO en pantallas pequeñas Y en modo vertical */
             @media (orientation: portrait) {
                 #orientation-overlay {
                     display: flex;
@@ -176,7 +178,6 @@
     <div class="main-container">
         <div class="form-section">
             <h1>Hola, bienvenid@ al mundo virtual de Bala</h1>
-
             <label for="avatarSelector">Elige una Especialidad para conversar:</label>
             <select id="avatarSelector">
                 <option value="" data-description="Selecciona un tema del que quieras hablar para ver una breve descripción aquí.">-- Selecciona --</option>
@@ -189,9 +190,7 @@
                 <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjIx%0D%0AYzBhZDQwYzYzYzQ3Y2ZiMGEyZWE4NjRhYTUyYzJhIiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Analicemos el marco regulatorio y los aspectos legales del sector de las telecomunicaciones.">Legal Telecomunicaciones</option>
                 <option value="eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiI3NjIxNzZjMmVlNjQ0MGY4OGRmZTc1NDRj%0D%0AOTY4NzU3YiIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzc2MjE3NmMyZWU2NDQwZjg4ZGZlNzU0NGM5Njg3NTdiL2Z1bGwvMi4yL3ByZXZpZXdfdGFyZ2V0%0D%0ALndlYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6ZmFsc2UsImtub3dsZWRnZUJhc2VJZCI6IjU0%0D%0AODljOTUyNDUyMTRiNjk5NTA1ZTg4ZjkzMjZmYTg5IiwidXNlcm5hbWUiOiI5MzgzNWRlMjZmMTY0%0D%0AOTI1YTJkNDE2MmI1YTE1MDllNyJ9" data-description="Profundicemos en la tecnología detrás de las redes móviles, incluyendo 4G/LTE y el nuevo estándar 5G.">Redes RAN 4G y 5G</option>
             </select>
-
             <div id="descriptionContainer">Selecciona un tema del que quieras hablar para ver una breve descripción aquí.</div>
-            
             <button id="loadAvatarButton">Conversar con Bala</button>
         </div>
         
@@ -203,7 +202,7 @@
     </div>
 
     <script>
-        // El bloque de script no ha cambiado, es exactamente el mismo de antes.
+        // El script no ha cambiado en absoluto
         (function() {
             const avatarSelector = document.getElementById('avatarSelector');
             const loadAvatarButton = document.getElementById('loadAvatarButton');
@@ -211,7 +210,6 @@
             const avatarContainer = document.getElementById('avatar-container');
             const placeholderText = document.getElementById('avatar-placeholder-text');
             const heyGenWidgetId = 'heygen-streaming-embed';
-
             function cleanupHeyGenWidget() {
                 const existingWidget = document.getElementById(heyGenWidgetId);
                 if (existingWidget) {
@@ -221,7 +219,6 @@
                     placeholderText.style.display = 'block';
                 }
             }
-
             function loadHeyGenWidget(shareToken) {
                 if (!shareToken) {
                     alert('Por favor, selecciona una opción para conversar.');
@@ -231,48 +228,19 @@
                 if (placeholderText) {
                     placeholderText.style.display = 'none';
                 }
-
                 (function(window, currentShareToken) {
                     const host = "https://labs.heygen.com";
                     const url = host + "/guest/streaming-embed?share=" + currentShareToken + "&inIFrame=1";
-                    
                     const wrapDiv = document.createElement("div");
                     wrapDiv.id = heyGenWidgetId;
                     const container = document.createElement("div");
                     container.id = "heygen-streaming-container";
                     const stylesheet = document.createElement("style");
                     stylesheet.innerHTML = `
-                      #${heyGenWidgetId} {
-                        z-index: 9999;
-                        position: absolute !important;
-                        top: 50% !important;
-                        left: 50% !important;
-                        transform: translate(-50%, -50%) !important;
-                        width: 200px;
-                        height: 200px;
-                        border-radius: 50%;
-                        border: 2px solid #fff;
-                        box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
-                        transition: all linear 0.1s;
-                        overflow: hidden;
-                        opacity: 0;
-                        visibility: hidden;
-                      }
+                      #${heyGenWidgetId} { z-index: 9999; position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; width: 200px; height: 200px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12); transition: all linear 0.1s; overflow: hidden; opacity: 0; visibility: hidden; }
                       #${heyGenWidgetId}.show { opacity: 1; visibility: visible; }
-                      #${heygenWidgetId}.expand {
-                        width: 100% !important;
-                        height: 100% !important;
-                        border: 0 !important;
-                        border-radius: 0 !important;
-                        top: 0 !important;
-                        left: 0 !important;
-                        transform: none !important;
-                      }
-                      #heygen-streaming-container, #heygen-streaming-container iframe {
-                        width: 100%;
-                        height: 100%;
-                        border: 0;
-                      }
+                      #${heyGenWidgetId}.expand { width: 100% !important; height: 100% !important; border: 0 !important; border-radius: 0 !important; top: 0 !important; left: 0 !important; transform: none !important; }
+                      #heygen-streaming-container, #heygen-streaming-container iframe { width: 100%; height: 100%; border: 0; }
                     `;
                     const iframe = document.createElement("iframe");
                     iframe.allowFullscreen = false;
@@ -280,9 +248,7 @@
                     iframe.role = "dialog";
                     iframe.allow = "microphone";
                     iframe.src = url;
-
                     let visible = false, initial = false;
-
                     window.addEventListener("message", (e => {
                         if (e.origin === host && e.data && e.data.type && "streaming-embed" === e.data.type) {
                             if ("init" === e.data.action) {
@@ -297,27 +263,21 @@
                             }
                         }
                     }));
-
                     container.appendChild(iframe);
                     wrapDiv.appendChild(stylesheet);
                     wrapDiv.appendChild(container);
-                    
                     avatarContainer.appendChild(wrapDiv);
-
                 })(globalThis, shareToken);
             }
-
             avatarSelector.addEventListener('change', function() {
                 const selectedOption = this.options[this.selectedIndex];
                 const description = selectedOption.getAttribute('data-description');
                 descriptionContainer.textContent = description || 'Selecciona un tema...';
             });
-
             loadAvatarButton.addEventListener('click', function() {
                 const selectedShareToken = avatarSelector.value;
                 loadHeyGenWidget(selectedShareToken);
             });
-
         })();
     </script>
 
